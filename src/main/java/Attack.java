@@ -1,3 +1,8 @@
+/**
+ * Class to hold the attributes of a monster's attack.
+ * @author James Kendall Bruce
+ *
+ */
 public class Attack {
 
     public String type;
@@ -5,7 +10,7 @@ public class Attack {
 
     public Attack(double attack, String type){
         this.type = type;
-        this.damage = damage;
+        this.damage = attack;
     }
 
 

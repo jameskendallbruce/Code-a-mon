@@ -1,5 +1,10 @@
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * Class to store a monster's stats --determined by the monster's other attributes.
+ * @author James Kendal Bruce
+ *
+ */
 public class Stats {
 
     double attack;
@@ -8,63 +13,78 @@ public class Stats {
     double crit;
     double speed;
 
+    /**
+     * Constructor that generates generic base stats wihtout any other specific attributes
+     * accounted for.
+     */
     public Stats() {
-        attack = 50;
-        defense = 50;
-        health = 100;
-        crit = 3;
-        speed = 50;
+        attack = 2;
+        defense = 2;
+        health = 50;
+        crit = 2;
+        speed = 2;
     }
 
-    public Stats(MonsterImpl.Type type, MonsterImpl.Creature creature) {
+    /**
+     * Constructor that used the monster's type and creature attributes to determine
+     * the values of the stats.
+     * @param type -- the monster's elemental type.
+     * @param creature -- the monster's base creature.
+     */
+    public Stats(Type type, Creature creature) {
+        
         switch (creature) {
-            case CUB: // Raw Stats: 260 (~290)
-                attack = 40;
-                defense = 80;
-                health = 100;
-                crit = 3;
-                speed = 40;
-                break;
-            case PUP: // Raw Stats: 265 (~275)
-                attack = 70;
-                defense = 50;
-                health = 90;
-                crit = 1;
-                speed = 55;
-                break;
-            case TADPOLE: // Raw Stats: 260 (~290)
-                attack = 50;
-                defense = 30;
-                health = 120;
-                crit = 3;
-                speed = 60;
-                break;
-            case WHELP: // Raw Stats: 235 (~285)
-                attack = 45;
-                defense = 55;
-                health = 80;
-                crit = 5;
-                speed = 55;
-                break;
-        }
+        case CUB:
+            attack = 1;
+            defense = 3;
+            health = 50;
+            crit = 3;
+            speed = 1;
+            break;
+        case PUP:
+            attack = 3;
+            defense = 2;
+            health = 45;
+            crit = 1;
+            speed = 2;
+            break;
+        case TADPOLE:
+            attack = 2;
+            defense = 1;
+            health = 65;
+            crit = 3;
+            speed = 3;
+            break;
+        case WHELP:
+            attack = 2;
+            defense = 3;
+            health = 40;
+            crit = 5;
+            speed = 2;
+            break;
+    }
         
         addType(type);
 
     }
     
-    public void addType(MonsterImpl.Type type) {
+    /**
+     * Method to increase 1 stat based off of the monster's type.
+     * @param type
+     */
+    public void addType(Type type) {
         switch (type) {
         case WATER:
-            health += 10;
+            health += 5;
             break;
         case EARTH:
-            defense += 10;
+            defense += 1;
             break;
         case FIRE:
-            attack += 10;
+            attack += 1;
             break;
         case AIR:
-            crit += 2;
+            crit += 1;
             break;
         }
     }

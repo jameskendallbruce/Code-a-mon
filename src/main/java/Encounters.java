@@ -1,0 +1,6 @@
+public enum Encounters {
+    MONSTER_CENTER,
+    RANDOM_ENCOUNTER,
+    TRAINER_CHALLENGE,
+    LEGENDARY_ENCOUNTER
+}
