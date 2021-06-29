@@ -18,18 +18,6 @@ public class MonsterImpl implements Monster {
     public MonsterMemento monMemo = null;
     
     /**
-     * Encounter bonuses:
-     * --weatherBuff represents how a monster's attack/defense is effected by weather.
-     * --stab stands for "same type attack advantage." This is when the monster's attack Element
-     * type, matches the monster's element type.
-     * --typeAdv is based on how the monster's element type effects/is effected by the other 
-     * monster's Element type.
-     */
-    public double weatherBuff = 1.0; 
-    public double stab = 1.0;
-    public double typeAdv = 1.0;
-    
-    /**
      * Individual stat bonuses. Not encounter dependent but also not permanent stat buffs/debuffs.
      * Also includes int variable to track the duration of the buff.
      */
@@ -46,7 +34,7 @@ public class MonsterImpl implements Monster {
      * Tracks the monster's level and experience progress.
      */
     public int level = 1;
-    public int nextLevel = 10;
+    public int nextLevel = 5;
     public int currentExp = 0;
     
     
@@ -84,7 +72,7 @@ public class MonsterImpl implements Monster {
 
     /**
      * Constructor to create a specific monster.
-     * @param type -- the monster's elemental type.
+     * @param el -- the monster's elemental type.
      * @param creature -- the monster's base creature.
      */
     public MonsterImpl(Element el, Creature creature) {
@@ -113,18 +101,18 @@ public class MonsterImpl implements Monster {
      */
     public void levelUp() {
         level++;
-        nextLevel = nextLevel*2;
-        int atk = ThreadLocalRandom.current().nextInt(0, 5);
-        int def = ThreadLocalRandom.current().nextInt(0, 5);
-        int hlt = ThreadLocalRandom.current().nextInt(0, 5);
-        int crt = ThreadLocalRandom.current().nextInt(0, 7);
-        int spd = ThreadLocalRandom.current().nextInt(0, 5);
+        nextLevel = 10;
+        final int atk = ThreadLocalRandom.current().nextInt(0, 5);
+        final int def = ThreadLocalRandom.current().nextInt(0, 5);
+        final int hlt = ThreadLocalRandom.current().nextInt(0, 5);
+        final int crt = ThreadLocalRandom.current().nextInt(0, 7);
+        final int spd = ThreadLocalRandom.current().nextInt(0, 5);
         
         double tempHp = getMemento().getHp();
         
         /**
-         * Procedurally updates stats based on a random 0-4 roll. 0 through 2 does not update anything.
-         * 3 or 4 raises the stat by 1.
+         * Procedurally updates stats based on a random 0-4 roll. 0 through 2 does not update 
+         * any stats. 3 or 4 raises the stat by 1.
          * Health always go up a base amount of 5 and a maximum of 10.
          * Crit only increases on a roll of 5 or higher.
          */
@@ -154,6 +142,7 @@ public class MonsterImpl implements Monster {
         }
         
     }
+    
     /**
      * Checks whether the monster has reached an appropriate level to evolve.
      * @return true if monster is at or above level 10.
@@ -172,17 +161,25 @@ public class MonsterImpl implements Monster {
     }
     
     /**
-     * Calculates and update's the monster's experience based on the level of the monster that it just defeated.
-     * @param oppLevel
+     * Calculates and update's the monster's experience based off of the trainer's current level
+     * and the level of the monster that was just defeated.
+     * @param oppLevel -- experience to be calculated.
      */
     public void updateExp(int oppLevel) {
         
-        int expGained = oppLevel*3;
+        int expGained = oppLevel * 5;
         currentExp += expGained;
+        
+        int expUntil = nextLevel - currentExp;
+        
+        System.out.println(name + " gained " + expGained + "xp.");
         
         if (checkLevelUp()) {
             levelUp();
+            System.out.println("Leveled up to " + level + "!");
         }
+        
+        System.out.println(expUntil + "xp until the next level.");
     }
     
     /**
@@ -242,6 +239,10 @@ public class MonsterImpl implements Monster {
         createMemento(this.stats.health);
     }
     
+    /**
+     * Creates an attack based off of the monster's build.
+     * @return -- an attack with appropriate attributes.
+     */
     public Attack attack() {
         
         double attackDamage = 0;
@@ -253,7 +254,7 @@ public class MonsterImpl implements Monster {
             selectionMade = true;
         }
 
-        String desc= "";
+        String desc = "";
         Attack attack = null;
 
         if (evolution != null) {
@@ -274,7 +275,7 @@ public class MonsterImpl implements Monster {
                         attack = new Attack(15, Element.NORMAL);
                     } else {
                         desc = " uses SLASHING " + type + " CLAWS! ";
-                        attack = new Attack (stats.attack, type);
+                        attack = new Attack(stats.attack, type);
                     }
                     break;
                 case HOUND:
@@ -291,12 +292,13 @@ public class MonsterImpl implements Monster {
                         attack = new Attack(15, Element.NORMAL);
                     } else {
                         desc = " uses " + evolution.mod + " HOUND " + type + " TACKLE! ";
-                        attack = new Attack (stats.attack, type);
+                        attack = new Attack(stats.attack, type);
                     }
                     break;
                 case TOAD:
                     if (attackNumber == 0) {
-                        desc = " uses IMPOSSIBLE TO CATCH WHEN WET, temporarily increasing speed stat by 3.";
+                        desc = " uses IMPOSSIBLE TO CATCH WHEN WET,"
+                                + " temporarily increasing speed stat by 3.";
                         spdBuff = 3;
                         spdTally = 5;
                         attack = new Attack(0, Element.NORMAL);
@@ -313,8 +315,9 @@ public class MonsterImpl implements Monster {
                     break;
                 case DRAGON:
                     if (attackNumber == 0) {
-                        desc = " uses REST ON MOUNTAIN OF GOLD, temporarily increasing crit stat by 10!";
-                        crtBuff+=10;
+                        desc = " uses REST ON MOUNTAIN OF GOLD, temporarily increasing crit "
+                                + "stat by 10!";
+                        crtBuff = 10;
                         crtTally = 5;
                         attack = new Attack(0, Element.NORMAL);
                     } else if (attackNumber == 1) {
@@ -324,10 +327,13 @@ public class MonsterImpl implements Monster {
                         desc = " uses SPIKY GIANT TAIL SWIPE!";
                         attack = new Attack(15, Element.NORMAL);
                     } else {
-                        desc = " uses " + evolution.mod +" SONIC " + type + " BLAST!";
+                        desc = " uses " + evolution.mod + " SONIC " + type + " BLAST!";
                         attack = new Attack(stats.attack, type);
-                }
-                
+                    }
+                    break;
+                default: 
+                    System.out.println("Unknown evolution type.");
+                    break;   
             }
             
         } else {
@@ -348,7 +354,7 @@ public class MonsterImpl implements Monster {
                         attack = new Attack(7, Element.NORMAL);
                     } else {
                         desc = " uses SLASHING " + type + " CLAWS! ";
-                        attack = new Attack (stats.attack, type);
+                        attack = new Attack(stats.attack, type);
                     }
                     break;
                 case PUP:
@@ -365,7 +371,7 @@ public class MonsterImpl implements Monster {
                         attack = new Attack(7, Element.NORMAL);
                     } else {
                         desc = " uses PUPPY " + type + " TACKLE! ";
-                        attack = new Attack (stats.attack, type);
+                        attack = new Attack(stats.attack, type);
                     }
                     break;
                 case TADPOLE:
@@ -388,7 +394,7 @@ public class MonsterImpl implements Monster {
                 case WHELP:
                     if (attackNumber == 0) {
                         desc = " uses WAIT TO STRIKE, temporarily increasing crit stat by 5!";
-                        crtBuff+=5;
+                        crtBuff = 5;
                         crtTally = 2;
                         attack = new Attack(0, Element.NORMAL);
                     } else if (attackNumber == 1) {
@@ -401,12 +407,44 @@ public class MonsterImpl implements Monster {
                         desc = " uses SONIC " + type + " BLAST!";
                         attack = new Attack(stats.attack, type);
                     }
+                    break;
+                default: 
+                    System.out.println("Unknown creature type.");
+                    break;
             }
         }
       
         System.out.println(name + desc);
-        System.out.println(attack.damage + " damage dealt!");
         return attack;
+    }
+    
+    /**
+     * Generates a standard name.
+     * Useful for converting wild monster's to tamed ones.
+     */
+    public void updateName() {
+        name = type.toString() + " " + creature.toString();
+        if (evolution != null) {
+            name = evolution.mod.toString() + " " + name;
+        }
+    }
+    
+    /**
+     * Mehtod to decrease all tallies after a round of combat.
+     */
+    public void decrementTallies() {
+        if (atkTally > 0) {
+            atkTally--;
+        }
+        if (defTally > 0) {
+            defTally--;
+        }
+        if (spdTally > 0) {
+            spdTally--;
+        }
+        if (crtTally > 0) {
+            crtTally--;
+        }
     }
 
 }

@@ -7,9 +7,9 @@ public class Trainer {
     
     public String trainerName = null;
     
-    Team team = new Team(this);
+    public Team team = new Team(this);
     
-    int winCount = 0;
+    public int winCount = 0;
     
     /**
      * Generic constructor that sets a trainer's name.

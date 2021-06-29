@@ -47,7 +47,7 @@ public class Team {
         TeamSlot slot = new TeamSlot(mon);
         int size = getTeamSize();
         if (size >= 6) {
-            System.out.println("Your team is already full. Please delete a party member.");
+            System.out.println("Your team is already full.");
         } else {
             int index = size + 1;
             slots.add(slot);
@@ -80,5 +80,20 @@ public class Team {
      */
     public int getTeamSize() {
         return slots.size();
+    }
+    
+    public void printTeam() {
+        
+        System.out.println("====================");
+        System.out.println(trainer.trainerName + "'s team: ");
+        
+        int size = getTeamSize();
+        for (int i = 0; i < size; i++) {
+            String name = slots.get(i).getMonster().name;
+            int idx = i + 1;
+            System.out.println(idx + ": " + name);
+            
+        }
+        System.out.println("====================");
     }
 }

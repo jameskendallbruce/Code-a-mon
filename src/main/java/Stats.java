@@ -34,35 +34,41 @@ public class Stats {
     public Stats(Element type, Creature creature) {
         
         switch (creature) {
-        case CUB:
-            attack = 1;
-            defense = 3;
-            health = 50;
-            crit = 3;
-            speed = 1;
-            break;
-        case PUP:
-            attack = 3;
-            defense = 2;
-            health = 50;
-            crit = 2;
-            speed = 2;
-            break;
-        case TADPOLE:
-            attack = 2;
-            defense = 1;
-            health = 65;
-            crit = 3;
-            speed = 3;
-            break;
-        case WHELP:
-            attack = 2;
-            defense = 3;
-            health = 40;
-            crit = 5;
-            speed = 2;
-            break;
-    }
+            case CUB:
+                attack = 1;
+                defense = 3;
+                health = 50;
+                crit = 3;
+                speed = 1;
+                break;
+            case PUP:
+                attack = 3;
+                defense = 2;
+                health = 50;
+                crit = 2;
+                speed = 2;
+                break;
+            case TADPOLE:
+                attack = 2;
+                defense = 1;
+                health = 65;
+                crit = 3;
+                speed = 3;
+                break;
+            case WHELP:
+                attack = 2;
+                defense = 3;
+                health = 40;
+                crit = 5;
+                speed = 2;
+                break;
+            default:
+                attack = 2;
+                defense = 2;
+                health = 50;
+                crit = 2;
+                speed = 2;
+        }
         
         addType(type);
 
@@ -70,7 +76,7 @@ public class Stats {
     
     /**
      * Method to increase 1 stat based off of the monster's type.
-     * @param type
+     * @param type -- new elemental type.
      */
     public void addType(Element type) {
         switch (type) {
@@ -85,6 +91,8 @@ public class Stats {
                 break;
             case AIR:
                 crit += 1;
+                break;
+            default:
                 break;
         }
     }

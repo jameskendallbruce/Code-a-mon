@@ -25,6 +25,18 @@ public class Evolution extends MonsterEvolver {
     }
     
     /**
+     * Specific constructor for generating and evolved legend.
+     * @param mon -- the legendary monster that is evolving.
+     */
+    public Evolution(MonsterImpl mon, Modifier legendMod) {
+        super(mon);
+        Creature creat = monster.creature;
+        setEvolved(creat);
+        setMod(legendMod);
+        updateName();
+    }
+    
+    /**
      * Method to determine and update stats based off of the creature that is evolving.
      * @param creat
      */

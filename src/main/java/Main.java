@@ -13,9 +13,9 @@ public class Main {
                 + "\n||      Code-a-mon      ||\n|| Gotta catch 'em all! "
                 + "||\n|| Coming June 28, 2021 ||\n==========================\n");
         
-        Trainer taako = new Trainer("Taako");
+        Trainer angus = new Trainer("Angus");
         
-        Team team = taako.team;
+        Team team = angus.team;
         
         MonsterImpl newMon1 = new MonsterImpl();
         team.addNewMonster(newMon1);
@@ -24,54 +24,41 @@ public class Main {
         MonsterImpl mon1 = mon1slot.getMonster();
         
         EncounterManager encMan = new EncounterManager();
-        
-        String res = "\n\n???\n...\nSeems like you've found a special encounter.\n"
-                + "...\nLet's hope that you're ready!\n\n";
-        
-        System.out.println(res);
-        
-        System.out.println(taako.trainerName + ", you are about to start your monster catching journey.\n");
+                
+        System.out.println("\n" + angus.trainerName + ", you are about to start your monster catching journey.\n");
         
         
         String name1 = mon1.name;
-        System.out.println(taako.trainerName + " has caught a wild " + name1 + "!");
+        System.out.println(angus.trainerName + ", here's an untrained " + name1 + "!"
+                + "\n It's dangerous to go alone!\n");
         Stats m1S = mon1.stats;
+        System.out.println(angus.trainerName + "'s " + name1 + "'s initial stats:");
         System.out.println("HP: " + m1S.health + " DEF: " + m1S.defense);
         System.out.println("ATK: " + m1S.attack + " SPD: " + m1S.speed);
         System.out.println("CRT: " + m1S.crit);
-        System.out.println("Stored HP: " + mon1.getMemento().getHp() + "\n");
         
-        /**
-         * Simulating some damage dealt.
-         */
-        m1S.health -= 30;
-        System.out.println(name1 + " took 30 damage. New HP: " + m1S.health);
+        encMan.handleEncounter(angus);
+        encMan.handleEncounter(angus);
+        encMan.handleEncounter(angus);
+        encMan.handleEncounter(angus);
         
-        encMan.handleEncounter(taako);
-        encMan.handleEncounter(taako);
-        encMan.handleEncounter(taako);
-        encMan.handleEncounter(taako);
-        encMan.handleEncounter(taako);
-        
-        int currentLevel = mon1.level;
         while (mon1.evolution == null) {
-            // System.out.println("Defeated a level 10 monster");
-            mon1.updateExp(10);
+            encMan.handleEncounter(angus);
             if (mon1.evolution != null) {
                 String name1ev = mon1.name;
                 Stats m1evS = mon1.stats;
-                System.out.println(taako.trainerName + "'s " + name1 + " evolved into " + name1ev + "\n");
+                System.out.println(angus.trainerName + "'s " + name1 + " evolved into " + name1ev + "\n");
                 System.out.println("HP: " + m1evS.health + " DEF: " + m1evS.defense);
                 System.out.println("ATK: " + m1evS.attack + " SPD: " + m1evS.speed);
                 System.out.println("CRT: " + m1evS.crit + "\n");
-                System.out.println("Stored HP: " + mon1.getMemento().getHp() + "\n");
+                System.out.println("\n*=======================================*\n");
+                System.out.println("\n...\nSomething is happening...\n...");
+                encMan.handleSpecialEncounter(angus);
             }
+
             
-            encMan.handleEncounter(taako);
-            encMan.handleEncounter(taako);
-            encMan.handleEncounter(taako);
-            encMan.handleEncounter(taako);
-            encMan.handleEncounter(taako);
+            //encMan.handleEncounter(angus);
+            //encMan.handleEncounter(angus);
             
             /*
             else if (mon1.level > currentLevel) {
