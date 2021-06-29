@@ -3,9 +3,12 @@
  * @author James Kendall Bruce
  *
  */
-public enum Type {
+public enum Element {
     WATER,
     EARTH,
     FIRE,
-    AIR
+    AIR,
+    ANY,
+    NORMAL,
+    CELESTIAL
 }

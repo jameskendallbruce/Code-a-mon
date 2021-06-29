@@ -5,12 +5,12 @@
  */
 public class Attack {
 
-    public String type;
+    public Element type;
     public double damage;
 
-    public Attack(double attack, String type){
-        this.type = type;
-        this.damage = attack;
+    public Attack(double dmg, Element el){
+        this.type = el;
+        this.damage = dmg;
     }
 
 

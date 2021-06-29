@@ -7,5 +7,6 @@ public enum Modifier {
     ATOMIC,
     WERE,
     ROBO,
+    HERCULEAN,
     ELDRITCH
 }

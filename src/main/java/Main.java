@@ -13,9 +13,9 @@ public class Main {
                 + "\n||      Code-a-mon      ||\n|| Gotta catch 'em all! "
                 + "||\n|| Coming June 28, 2021 ||\n==========================\n");
         
-        Trainer miles = new Trainer("Miles");
+        Trainer taako = new Trainer("Taako");
         
-        Team team = miles.team;
+        Team team = taako.team;
         
         MonsterImpl newMon1 = new MonsterImpl();
         team.addNewMonster(newMon1);
@@ -23,30 +23,64 @@ public class Main {
         TeamSlot mon1slot = team.getMonsterSlot(1);
         MonsterImpl mon1 = mon1slot.getMonster();
         
+        EncounterManager encMan = new EncounterManager();
+        
+        String res = "\n\n???\n...\nSeems like you've found a special encounter.\n"
+                + "...\nLet's hope that you're ready!\n\n";
+        
+        System.out.println(res);
+        
+        System.out.println(taako.trainerName + ", you are about to start your monster catching journey.\n");
+        
+        
         String name1 = mon1.name;
-        System.out.println(miles.trainerName + " has caught a " + name1 + "!");
+        System.out.println(taako.trainerName + " has caught a wild " + name1 + "!");
         Stats m1S = mon1.stats;
         System.out.println("HP: " + m1S.health + " DEF: " + m1S.defense);
         System.out.println("ATK: " + m1S.attack + " SPD: " + m1S.speed);
-        System.out.println("CRT: " + m1S.crit + "\n");
+        System.out.println("CRT: " + m1S.crit);
+        System.out.println("Stored HP: " + mon1.getMemento().getHp() + "\n");
+        
+        /**
+         * Simulating some damage dealt.
+         */
+        m1S.health -= 30;
+        System.out.println(name1 + " took 30 damage. New HP: " + m1S.health);
+        
+        encMan.handleEncounter(taako);
+        encMan.handleEncounter(taako);
+        encMan.handleEncounter(taako);
+        encMan.handleEncounter(taako);
+        encMan.handleEncounter(taako);
         
         int currentLevel = mon1.level;
         while (mon1.evolution == null) {
-            System.out.println("Defeated a level 10 monster");
+            // System.out.println("Defeated a level 10 monster");
             mon1.updateExp(10);
             if (mon1.evolution != null) {
                 String name1ev = mon1.name;
                 Stats m1evS = mon1.stats;
-                System.out.println(name1 + " evolved into " + name1ev + "\n");
+                System.out.println(taako.trainerName + "'s " + name1 + " evolved into " + name1ev + "\n");
                 System.out.println("HP: " + m1evS.health + " DEF: " + m1evS.defense);
                 System.out.println("ATK: " + m1evS.attack + " SPD: " + m1evS.speed);
                 System.out.println("CRT: " + m1evS.crit + "\n");
-            } else if (mon1.level > currentLevel) {
+                System.out.println("Stored HP: " + mon1.getMemento().getHp() + "\n");
+            }
+            
+            encMan.handleEncounter(taako);
+            encMan.handleEncounter(taako);
+            encMan.handleEncounter(taako);
+            encMan.handleEncounter(taako);
+            encMan.handleEncounter(taako);
+            
+            /*
+            else if (mon1.level > currentLevel) {
                 System.out.println(name1 + " leveled up!!\n");
                 System.out.println("HP: " + m1S.health + " DEF: " + m1S.defense);
                 System.out.println("ATK: " + m1S.attack + " SPD: " + m1S.speed);
                 System.out.println("CRT: " + m1S.crit + "\n");    
             }
+            */
             
             
         }

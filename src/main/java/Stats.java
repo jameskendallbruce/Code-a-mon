@@ -31,7 +31,7 @@ public class Stats {
      * @param type -- the monster's elemental type.
      * @param creature -- the monster's base creature.
      */
-    public Stats(Type type, Creature creature) {
+    public Stats(Element type, Creature creature) {
         
         switch (creature) {
         case CUB:
@@ -44,8 +44,8 @@ public class Stats {
         case PUP:
             attack = 3;
             defense = 2;
-            health = 45;
-            crit = 1;
+            health = 50;
+            crit = 2;
             speed = 2;
             break;
         case TADPOLE:
@@ -72,20 +72,20 @@ public class Stats {
      * Method to increase 1 stat based off of the monster's type.
      * @param type
      */
-    public void addType(Type type) {
+    public void addType(Element type) {
         switch (type) {
-        case WATER:
-            health += 5;
-            break;
-        case EARTH:
-            defense += 1;
-            break;
-        case FIRE:
-            attack += 1;
-            break;
-        case AIR:
-            crit += 1;
-            break;
+            case WATER:
+                health += 5;
+                break;
+            case EARTH:
+                defense += 1;
+                break;
+            case FIRE:
+                attack += 1;
+                break;
+            case AIR:
+                crit += 1;
+                break;
         }
     }
     
