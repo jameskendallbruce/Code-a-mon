@@ -23,9 +23,10 @@ public class Main {
         TeamSlot mon1slot = team.getMonsterSlot(1);
         MonsterImpl mon1 = mon1slot.getMonster();
         
-        EncounterManager encMan = new EncounterManager();
+        final EncounterManager encMan = new EncounterManager();
                 
-        System.out.println("\n" + angus.trainerName + ", you are about to start your monster catching journey.\n");
+        System.out.println("\n" + angus.trainerName + ", you are about to start your "
+                + "monster catching journey.\n");
         
         
         String name1 = mon1.name;
@@ -47,7 +48,8 @@ public class Main {
             if (mon1.evolution != null) {
                 String name1ev = mon1.name;
                 Stats m1evS = mon1.stats;
-                System.out.println(angus.trainerName + "'s " + name1 + " evolved into " + name1ev + "\n");
+                System.out.println(angus.trainerName + "'s " + name1 + " evolved into "
+                        + name1ev + "\n");
                 System.out.println("HP: " + m1evS.health + " DEF: " + m1evS.defense);
                 System.out.println("ATK: " + m1evS.attack + " SPD: " + m1evS.speed);
                 System.out.println("CRT: " + m1evS.crit + "\n");

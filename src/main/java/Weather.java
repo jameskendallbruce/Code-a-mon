@@ -1,6 +1,8 @@
 /**
 * List of possible weather conditions for different dayparts.
-* */
+* @author James Kendall bruce
+* 
+*/
 public enum Weather {
     FOGGY,
     SUNNY,

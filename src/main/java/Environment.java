@@ -1,3 +1,8 @@
+/**
+ * Class to hold the battle environment, including the weather and stat buffs.
+ * @author James Kendall Bruce
+ *
+ */
 public class Environment {
 
     Weather weather = Weather.NEUTRAL;
@@ -6,17 +11,24 @@ public class Environment {
     double buffMod = 1.25;
     double debuffMod = 0.75;
 
-    public Environment(){
+    /**
+     * Generic constructor that defaults to NEUTRAL weather.
+     */
+    public Environment() {
         weather = Weather.NEUTRAL;
     }
 
+    /**
+     * Constructor that sets the weather attribute and determines other attributes accordingly.
+     * @param wthr -- specified weather conditions.
+     */
     public Environment(Weather wthr) {
         weather = wthr;
-        switch (weather){
+        switch (weather) {
             case SUNNY:
-               buff = Element.FIRE;
-               debuff = Element.WATER;
-               break;
+                buff = Element.FIRE;
+                debuff = Element.WATER;
+                break;
             case CLEAR:
                 buff = Element.FIRE;
                 debuff = Element.WATER;
@@ -45,11 +57,11 @@ public class Environment {
         }
     }
 
-    public Element getBuffedType(){
+    public Element getBuffedType() {
         return buff;
     }
 
-    public Element getDebuffedType(){
+    public Element getDebuffedType() {
         return debuff;
     }
 

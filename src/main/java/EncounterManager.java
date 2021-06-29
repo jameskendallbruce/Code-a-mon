@@ -1,3 +1,4 @@
+
 import java.util.LinkedList; 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -17,8 +18,6 @@ public class EncounterManager {
     public Weather weather = Weather.SUNNY;
     
     public Environment environ = null;
-    
-    public boolean gameOver = false;
     
     LegendaryMonster legend = null;
     MonsterImpl legendMon = null;
@@ -277,6 +276,7 @@ public class EncounterManager {
         BattleScenario battle = new BattleScenario(mon, random, environ);
         battle.initiateBattle();
         if (mon == battle.victor) {
+            player.winCount++;
             mon.updateExp((player.getWins() + random.level));
             if (team.getTeamSize() < 6) {
                 System.out.println("\n" + player.trainerName + " is attempting to catch "
@@ -349,6 +349,7 @@ public class EncounterManager {
         BattleScenario battle = new BattleScenario(mon, random, environ);
         battle.initiateBattle();
         if (mon == battle.victor) {
+            player.winCount++;
             mon.updateExp((player.getWins() + random.level));
             System.out.println("SUCCESS!\n" + player.trainerName);
             System.out.println(player.trainerName + "defeated " + opp.trainerName + ".");
@@ -383,6 +384,11 @@ public class EncounterManager {
         return res;
     }
     
+    /**
+     * Selects a random monster from a player's team.
+     * @param team -- the trainer's team.
+     * @return a random MonsterImpl from their roster.
+     */
     public MonsterImpl getRandomMonster(Team team) {
         LinkedList<TeamSlot> monsters = team.slots;
         MonsterImpl mon = null;

@@ -6,9 +6,9 @@
 public class Attack {
 
     public Element type;
-    public double damage;
+    public Double damage;
 
-    public Attack(double dmg, Element el){
+    public Attack(double dmg, Element el) {
         this.type = el;
         this.damage = dmg;
     }

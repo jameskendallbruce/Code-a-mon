@@ -9,8 +9,6 @@ public class BattleScenario {
 
     MonsterImpl mon1;
     MonsterImpl mon2;
-    Stats mon1Stats;
-    Stats mon2Stats;
     Environment environ;
     MonsterImpl victor;
 
@@ -31,11 +29,6 @@ public class BattleScenario {
      * Mehtod to start the battle.
      */
     public void initiateBattle() {
-
-        // initiate stats for mon1 and mon2
-        mon1Stats = mon1.stats;
-        mon2Stats = mon2.stats;
-
 
         System.out.println(mon1.name + " vs. " + mon2.name);
 

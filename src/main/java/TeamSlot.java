@@ -41,7 +41,7 @@ public class TeamSlot {
      * @return true if there is an evolution already stored in this teamslot.
      */
     public boolean checkEvolution() {
-        if (evolution != null ) {
+        if (evolution != null) {
             return true;
         } else {
             return false;

@@ -38,7 +38,7 @@ public class Evolution extends MonsterEvolver {
     
     /**
      * Method to determine and update stats based off of the creature that is evolving.
-     * @param creat
+     * @param creat -- the type of creature to be evolved.
      */
     public void setEvolved(Creature creat) {
         MonsterImpl mon = this.monster;
@@ -85,6 +85,9 @@ public class Evolution extends MonsterEvolver {
                 myStats.crit += 5;
                 mon.createMemento(tempHp);
                 break;
+            default:
+                System.out.println("Couldn't evolve that creature type..."
+                        + " Not an established creature.");
         }
         
         
@@ -127,10 +130,10 @@ public class Evolution extends MonsterEvolver {
     /**
      * Determines what new abilities the monster has gained from the evolution.
      */
-    public void setMod(Modifier pMod) {
+    public void setMod(Modifier parMod) {
         
         MonsterImpl mon = this.monster;
-        mod = pMod;
+        mod = parMod;
         Stats myStats = mon.stats;
         double tempHp = mon.getMemento().getHp();
 
@@ -165,11 +168,11 @@ public class Evolution extends MonsterEvolver {
         
         if (mod == Modifier.ATOMIC) {
             myStats.attack += 1;
-        } else if(mod == Modifier.WERE) {
+        } else if (mod == Modifier.WERE) {
             myStats.speed += 1;
-        } else if(mod == Modifier.ROBO) {
+        } else if (mod == Modifier.ROBO) {
             myStats.defense += 1;
-        } else if(mod == Modifier.HERCULEAN) {
+        } else if (mod == Modifier.HERCULEAN) {
             myStats.health += 5;
             tempHp += 5;
         }
@@ -180,9 +183,9 @@ public class Evolution extends MonsterEvolver {
      * Changes to monster's name to have an evolved name.
      */
     public void updateName() {
-        String tString = monster.type.toString();
-        String cString = evolved.toString();
-        String mString = mod.toString();
-        monster.name = mString + " " + tString + " " + cString;
+        String typeString = monster.type.toString();
+        String evolString = evolved.toString();
+        String modString = mod.toString();
+        monster.name = modString + " " + typeString + " " + evolString;
     }
 }

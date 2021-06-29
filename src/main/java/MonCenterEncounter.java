@@ -1,6 +1,12 @@
 import java.util.LinkedList; 
 
-public class MonCenterEncounter{
+/**
+ * Class to run a visit to the Monster Center where the monsters are each healed up fully 
+ * and buffs are dropped.
+ * @author James Kendall Bruce
+ *
+ */
+public class MonCenterEncounter {
     
     LinkedList<TeamSlot> slots = null;
     
@@ -8,6 +14,10 @@ public class MonCenterEncounter{
     
     Team team = null;
     
+    /**
+     * Constructor that recognizes who is visiting the center.
+     * @param trnr -- the visiting trainer.
+     */
     public MonCenterEncounter(Trainer trnr) {
         visitor = trnr;
         team = visitor.getTeam();
@@ -16,6 +26,9 @@ public class MonCenterEncounter{
         visitor.setTeam(team);
     }
     
+    /**
+     * Method to loop throught the trainer's team and return all monsters to their defautl states.
+     */
     public void healTeam() {
         for (int i = 0; i < slots.size(); i++) {
             MonsterImpl mon = slots.get(i).getMonster();

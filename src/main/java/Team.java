@@ -3,7 +3,7 @@ import java.util.LinkedList;
 /**
  * Class to hold the trainer's team of monsters.
  * Contains a linkedlist of the teamslots.
- * @author brantley_black
+ * @author James Kendall Bruce
  *
  */
 public class Team {
@@ -41,7 +41,7 @@ public class Team {
     
     /**
      * Adds a new monster into the Team's lineup.
-     * @param slot -- the TeamSlot containing the monster that is being added.
+     * @param mon -- monster to be added to the team.
      */
     public void addNewMonster(MonsterImpl mon) {
         TeamSlot slot = new TeamSlot(mon);
@@ -57,7 +57,7 @@ public class Team {
     
     /**
      * Adds a monster into a specific slot within a team's lineup.
-     * @param slot -- the TeamSlot containing the monster that is being added.
+     * @param mon -- the monster that is being added.
      * @param num -- the Slot # of the added TeamSlot (1 greater than the LinkedList index).
      */
     public void addNewMonsterAt(MonsterImpl mon, int num) {
@@ -65,7 +65,7 @@ public class Team {
         int size = getTeamSize();
         if (size >= 6) {
             System.out.println("Your team is already full. Please delete a party member.");
-        } else if (num < 0 || num > 6){
+        } else if (num < 0 || num > 6) {
             System.out.println("That team slot is not between 1 and 6.");
         } else {
             int index = num - 1;
@@ -82,6 +82,9 @@ public class Team {
         return slots.size();
     }
     
+    /**
+     * Method to print out the team as a roster.
+     */
     public void printTeam() {
         
         System.out.println("====================");
