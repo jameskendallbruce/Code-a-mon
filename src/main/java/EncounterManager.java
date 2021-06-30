@@ -136,11 +136,11 @@ public class EncounterManager {
         System.out.println("\n*=======================================*\n");
         if (mon == battle.victor) {
             mon.updateExp((player.getWins() + legendMon.level));
-            System.out.println(legendName + "was defeated by " + player.trainerName + "'s "
+            System.out.println(legendName + " was defeated by " + player.trainerName + "'s "
                     + mon.name + "!");
             System.out.println("\n" + player.trainerName + " is attempting to catch " 
                     + legendName + ".");
-            System.out.println(player.trainerName + "caught " + legendName + "!\n");
+            System.out.println(player.trainerName + " caught " + legendName + "!\n");
         } else {
             System.out.println(legendName + " was the victor!");
             System.out.println(mon.stats.health + " health left? \nSeems like a pretty "

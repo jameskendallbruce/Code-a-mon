@@ -57,57 +57,9 @@ public class Main {
                 System.out.println("\n...\nSomething is happening...\n...");
                 encMan.handleSpecialEncounter(angus);
             }
-
-            
-            //encMan.handleEncounter(angus);
-            //encMan.handleEncounter(angus);
-            
-            /*
-            else if (mon1.level > currentLevel) {
-                System.out.println(name1 + " leveled up!!\n");
-                System.out.println("HP: " + m1S.health + " DEF: " + m1S.defense);
-                System.out.println("ATK: " + m1S.attack + " SPD: " + m1S.speed);
-                System.out.println("CRT: " + m1S.crit + "\n");    
-            }
-            */
             
             
         }
-        /*
-        mon1.levelUp();
-
-        
-        Evolution mon1ev = new Evolution(mon1);
-        String name1ev = mon1ev.monster.name.toString();
-        Stats m1evS = mon1ev.monster.stats;
-        System.out.println(name1 + " evolved into " + name1ev);
-        System.out.println("HP: " + m1evS.health + " DEF: " + m1evS.defense);
-        System.out.println("ATK: " + m1evS.attack + " SPD: " + m1evS.speed);
-        System.out.println("CRT: " + m1evS.crit + "\n");
-        
-        System.out.println("\nSECOND MONSTER:");
-        
-        MonsterImpl mon2 = new MonsterImpl();
-        String name2 = mon2.name;
-        System.out.println("Monster 2: " + name2);
-        Stats m2S = mon2.stats;
-        System.out.println("HP: " + m2S.health + " DEF: " + m2S.defense);
-        System.out.println("ATK: " + m2S.attack + " SPD: " + m2S.speed);
-        System.out.println("CRT: " + m2S.crit + "\n");
-        mon2.levelUp();
-        System.out.println(name2 + " leveled up!!\n");
-        System.out.println("HP: " + m2S.health + " DEF: " + m2S.defense);
-        System.out.println("ATK: " + m2S.attack + " SPD: " + m2S.speed);
-        System.out.println("CRT: " + m2S.crit + "\n");
-        
-        Evolution mon2ev = new Evolution(mon2);
-        String name2ev = mon2ev.monster.name.toString();
-        Stats m2evS = mon2ev.monster.stats;
-        System.out.println(name2 + " evolved into " + name2ev);
-        System.out.println("HP: " + m2evS.health + " DEF: " + m2evS.defense);
-        System.out.println("ATK: " + m2evS.attack + " SPD: " + m2evS.speed);
-        System.out.println("CRT: " + m2evS.crit + "\n");
-        */
         
     }
 }

@@ -22,3 +22,5 @@ team up and remove any harmful traits.
 
 Other Design Patterns from the Gang of Four may later be implemented but these are the initial 3
 selected to build a well-rounded (if somewhat rudimentary) application.
+
+Travis CI Link: https://travis-ci.com/github/jameskendallbruce/ser316-summer2021-C-jrbruce1-DP
